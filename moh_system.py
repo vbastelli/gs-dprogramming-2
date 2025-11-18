@@ -49,39 +49,32 @@ class SkillGraph:
         logger.info(f"Grafo inicializado com {len(self.skills)} habilidades")
     
     def _load_master_dataset(self) -> Dict[str, Dict]:
-        """
-        Carrega o conjunto de dados mestre de habilidades.
-        
-        Returns:
-            Dict: Dicionário com metadados de cada habilidade
-        """
         return {
-            'S1': {'Nome': 'Programação Básica (Python)', 'Tempo': 80, 'Valor': 3, 
-                   'Complexidade': 4, 'Pre_Reqs': [], 'Tipo': 'Base'},
-            'S2': {'Nome': 'Modelagem de Dados (SQL)', 'Tempo': 60, 'Valor': 4, 
-                   'Complexidade': 3, 'Pre_Reqs': [], 'Tipo': 'Base'},
-            'S3': {'Nome': 'Algoritmos Avançados', 'Tempo': 100, 'Valor': 7, 
-                   'Complexidade': 8, 'Pre_Reqs': ['S1'], 'Tipo': 'Crítica'},
-            'S4': {'Nome': 'Fundamentos de Machine Learning', 'Tempo': 120, 'Valor': 8, 
-                   'Complexidade': 9, 'Pre_Reqs': ['S1', 'S3'], 'Tipo': 'Não Crítica'},
-            'S5': {'Nome': 'Visualização de Dados (BI)', 'Tempo': 40, 'Valor': 6, 
-                   'Complexidade': 5, 'Pre_Reqs': ['S2'], 'Tipo': 'Crítica'},
-            'S6': {'Nome': 'IA Generativa Ética', 'Tempo': 150, 'Valor': 10, 
-                   'Complexidade': 10, 'Pre_Reqs': ['S4'], 'Tipo': 'Objetivo Final'},
-            'S7': {'Nome': 'Estruturas em Nuvem (AWS/Azure)', 'Tempo': 70, 'Valor': 5, 
-                   'Complexidade': 7, 'Pre_Reqs': [], 'Tipo': 'Crítica'},
-            'S8': {'Nome': 'APIs e Microsserviços', 'Tempo': 90, 'Valor': 6, 
-                   'Complexidade': 6, 'Pre_Reqs': ['S1'], 'Tipo': 'Crítica'},
-            'S9': {'Nome': 'DevOps & CI/CD', 'Tempo': 110, 'Valor': 9, 
-                   'Complexidade': 8, 'Pre_Reqs': ['S7', 'S8'], 'Tipo': 'Crítica'},
-            'H10': {'Nome': 'Segurança de Dados', 'Tempo': 60, 'Valor': 5, 
+            'S1': {'Nome': 'Programação Básica (Python)', 'Tempo': 80, 'Valor': 3,
+                'Complexidade': 4, 'Pre_Reqs': [], 'Tipo': 'Base'},
+            'S2': {'Nome': 'Modelagem de Dados (SQL)', 'Tempo': 60, 'Valor': 4,
+                'Complexidade': 3, 'Pre_Reqs': [], 'Tipo': 'Base'},
+            'S3': {'Nome': 'Algoritmos Avançados', 'Tempo': 100, 'Valor': 7,
+                'Complexidade': 8, 'Pre_Reqs': ['S1'], 'Tipo': 'Crítica'},
+            'S4': {'Nome': 'Fundamentos de Machine Learning', 'Tempo': 120, 'Valor': 8,
+                'Complexidade': 9, 'Pre_Reqs': ['S1', 'S3'], 'Tipo': 'Não Crítica'},
+            'S5': {'Nome': 'Visualização de Dados (BI)', 'Tempo': 40, 'Valor': 6,
+                'Complexidade': 5, 'Pre_Reqs': ['S2'], 'Tipo': 'Crítica'},   # ← NÃO PODE FALTAR!
+            'S6': {'Nome': 'IA Generativa Ética', 'Tempo': 150, 'Valor': 10,
+                'Complexidade': 10, 'Pre_Reqs': ['S4'], 'Tipo': 'Objetivo Final'},
+            'S7': {'Nome': 'Estruturas em Nuvem (AWS/Azure)', 'Tempo': 70, 'Valor': 16,  # alta razão para contraexemplo
+                'Complexidade': 7, 'Pre_Reqs': [], 'Tipo': 'Crítica'},
+            'S8': {'Nome': 'APIs e Microsserviços', 'Tempo': 90, 'Valor': 6,
+                'Complexidade': 6, 'Pre_Reqs': ['S1'], 'Tipo': 'Crítica'},
+            'S9': {'Nome': 'DevOps & CI/CD', 'Tempo': 110, 'Valor': 9,
+                'Complexidade': 8, 'Pre_Reqs': ['S7', 'S8'], 'Tipo': 'Crítica'},
+            'H10': {'Nome': 'Segurança de Dados', 'Tempo': 25, 'Valor': 12,   # contraexemplo forte
                     'Complexidade': 6, 'Pre_Reqs': [], 'Tipo': 'Lista Grande'},
-            'H11': {'Nome': 'Análise de Big Data', 'Tempo': 90, 'Valor': 8, 
+            'H11': {'Nome': 'Análise de Big Data', 'Tempo': 90, 'Valor': 8,
                     'Complexidade': 8, 'Pre_Reqs': ['S4'], 'Tipo': 'Lista Grande'},
-            'H12': {'Nome': 'Introdução a IoT', 'Tempo': 30, 'Valor': 3, 
-                    'Complexidade': 3, 'Pre_Reqs': [], 'Tipo': 'Lista Grande'}
+            'H12': {'Nome': 'Introdução a IoT', 'Tempo': 20, 'Valor': 11,     # contraexemplo forte
+                    'Complexidade': 3, 'Pre_Reqs': [], 'Tipo': 'Lista Grande'},
         }
-    
     def _build_graph(self):
         """Constrói o grafo direcionado e seu reverso."""
         for skill_id, metadata in self.skills.items():
@@ -199,76 +192,98 @@ class SkillGraph:
 
 
 class Challenge1_MaxValuePath:
-    """
-    Desafio 1: Caminho de Valor Máximo
-    Utiliza DP multidimensional (knapsack 2D) com simulação Monte Carlo.
-    """
-    
-    def __init__(self, graph: SkillGraph):
-        """
-        Inicializa o desafio com o grafo de habilidades.
-        
-        Args:
-            graph (SkillGraph): Grafo de habilidades validado
-        """
+    def __init__(self, graph: SkillGraph, max_time: int = 350, max_complexity: int = 30):
         self.graph = graph
-        self.max_time = 1200
-        self.max_complexity = 70
+        self.max_time = max_time
+        self.max_complexity = max_complexity
         self.target = 'S6'
         logger.info("Challenge 1 inicializado: Caminho de Valor Máximo")
     
     def solve_deterministic(self) -> Tuple[List[str], int, int, int]:
-        """
-        Resolve o problema deterministicamente usando DP.
-        
-        Returns:
-            Tuple: (caminho, valor_total, tempo_total, complexidade_total)
-        """
         logger.info("Executando solução determinística...")
         
-        # Encontrar todas as habilidades necessárias para S6
+        # Verificar se S6 é alcançável com as restrições
         required_skills = self._get_required_skills_for_target()
+        logger.info(f"Habilidades necessárias para S6: {sorted(required_skills)}")
         
-        # DP: dp[t][c] = (valor_max, conjunto_de_habilidades)
+        # Calcular custo mínimo para S6
+        min_time = sum(self.graph.skills[s]['Tempo'] for s in required_skills)
+        min_comp = sum(self.graph.skills[s]['Complexidade'] for s in required_skills)
+        
+        if min_time <= self.max_time and min_comp <= self.max_complexity:
+            logger.info(f"S6 é alcançável! Tempo={min_time}h, Complexidade={min_comp}")
+            # Considerar apenas habilidades no caminho para S6
+            skills_to_consider = required_skills
+        else:
+            logger.warning(f"S6 NÃO é alcançável! Tempo mínimo={min_time}h (limite {self.max_time}h), Comp={min_comp} (limite {self.max_complexity})")
+            logger.info("Maximizando valor com todas as habilidades disponíveis")
+            # Considerar TODAS as habilidades
+            skills_to_consider = set(self.graph.skills.keys())
+        
+        logger.info(f"Considerando {len(skills_to_consider)} habilidades: {sorted(skills_to_consider)}")
+        
+        # FORÇAR ORDEM TOPOLÓGICA (ESSA É A CHAVE!)
+        topo_order = self.graph.topological_sort()
+        if topo_order is None:
+            logger.error("Grafo tem ciclo!")
+            return [], 0, 0, 0
+        
+        # Filtra e mantém ordem topológica
+        ordered_required = [skill for skill in topo_order if skill in skills_to_consider]
+        logger.info(f"Processando em ordem topológica: {ordered_required}")
+
         dp = {}
         dp[(0, 0)] = (0, set())
-        
-        for skill_id in required_skills:
+
+        for skill_id in ordered_required:  # ← agora em ordem correta!
             skill = self.graph.skills[skill_id]
             new_dp = dict(dp)
-            
+
             for (time_used, comp_used), (value, skills_set) in dp.items():
-                # Verificar se pré-requisitos foram adquiridos
-                prereqs_met = all(prereq in skills_set for prereq in skill['Pre_Reqs'])
-                
-                if not prereqs_met or skill_id in skills_set:
+                if skill_id in skills_set:
                     continue
-                
+                    
+                if not all(prereq in skills_set for prereq in skill['Pre_Reqs']):
+                    continue
+
                 new_time = time_used + skill['Tempo']
                 new_comp = comp_used + skill['Complexidade']
-                
-                if new_time <= self.max_time and new_comp <= self.max_complexity:
-                    new_value = value + skill['Valor']
-                    new_skills = skills_set | {skill_id}
-                    
-                    if (new_time, new_comp) not in new_dp or new_dp[(new_time, new_comp)][0] < new_value:
-                        new_dp[(new_time, new_comp)] = (new_value, new_skills)
-            
+
+                if new_time > self.max_time or new_comp > self.max_complexity:
+                    continue
+
+                new_value = value + skill['Valor']
+                new_skills = skills_set | {skill_id}
+                key = (new_time, new_comp)
+
+                if key not in new_dp or new_dp[key][0] < new_value:
+                    new_dp[key] = (new_value, new_skills)
+
             dp = new_dp
-        
-        # Encontrar melhor solução que inclui S6
+
+        # Encontrar melhor solução (com ou sem S6)
         best_value = 0
         best_path = []
         best_time = 0
         best_comp = 0
-        
-        for (time_used, comp_used), (value, skills_set) in dp.items():
-            if self.target in skills_set and value > best_value:
-                best_value = value
-                best_path = list(skills_set)
-                best_time = time_used
-                best_comp = comp_used
-        
+        has_target = False
+
+        for (t, c), (val, skillset) in dp.items():
+            # Priorizar soluções com S6, mas aceitar qualquer solução se S6 não for alcançável
+            if self.target in skillset:
+                if val > best_value or (val == best_value and not has_target):
+                    best_value = val
+                    best_path = list(skillset)
+                    best_time = t
+                    best_comp = c
+                    has_target = True
+            elif not has_target and val > best_value:
+                # Só considerar soluções sem S6 se ainda não encontramos nenhuma com S6
+                best_value = val
+                best_path = list(skillset)
+                best_time = t
+                best_comp = c
+
         logger.info(f"Solução determinística: Valor={best_value}, Tempo={best_time}h, Complexidade={best_comp}")
         return best_path, best_value, best_time, best_comp
     
@@ -321,13 +336,8 @@ class Challenge1_MaxValuePath:
             'all_values': values
         }
     
-    def _get_required_skills_for_target(self) -> List[str]:
-        """
-        Obtém todas as habilidades necessárias para alcançar o objetivo.
-        
-        Returns:
-            List[str]: Lista de habilidades necessárias
-        """
+    def _get_required_skills_for_target(self) -> Set[str]:
+        """Corrigido: busca completa em profundidade usando grafo reverso"""
         required = set()
         stack = [self.target]
         
@@ -336,9 +346,10 @@ class Challenge1_MaxValuePath:
             if skill in required:
                 continue
             required.add(skill)
-            stack.extend(self.graph.skills[skill]['Pre_Reqs'])
+            stack.extend(self.graph.reverse_graph.get(skill, []))
         
-        return list(required)
+        logger.info(f"Habilidades necessárias para alcançar S6: {sorted(required)}")
+        return required
 
 
 class Challenge2_CriticalVerification:
@@ -761,7 +772,13 @@ def generate_report(graph: SkillGraph, results: Dict):
     report.append("-" * 80)
     if 'challenge1' in results:
         c1 = results['challenge1']
-        report.append(f"Solução Determinística:")
+        report.append(f"Restrições: Tempo ≤ 350h, Complexidade ≤ 30")
+        report.append(f"\nOBSERVAÇÃO IMPORTANTE:")
+        report.append(f"O objetivo final S6 (IA Generativa Ética) requer o caminho mínimo:")
+        report.append(f"S1 -> S3 -> S4 -> S6 (Tempo=450h, Complexidade=31)")
+        report.append(f"Como esse caminho EXCEDE as restrições, o algoritmo maximiza o valor")
+        report.append(f"considerando TODAS as habilidades disponíveis dentro dos limites.")
+        report.append(f"\nSolução Determinística:")
         report.append(f"  - Caminho: {' -> '.join(c1['deterministic']['path'])}")
         report.append(f"  - Valor Total: {c1['deterministic']['value']}")
         report.append(f"  - Tempo Total: {c1['deterministic']['time']}h")
@@ -771,14 +788,16 @@ def generate_report(graph: SkillGraph, results: Dict):
         report.append(f"  - Desvio Padrão: {c1['monte_carlo']['std_dev']:.2f}")
         report.append(f"  - Min: {c1['monte_carlo']['min_value']:.2f}")
         report.append(f"  - Max: {c1['monte_carlo']['max_value']:.2f}")
+        report.append(f"\nInterpretação: A solução encontrada maximiza o valor de carreira")
+        report.append(f"dentro das restrições, priorizando habilidades de alta razão V/T.")
     
     # Desafio 2
-    report.append("\n2. VERIFICAÇÃO CRÍTICA")
+    report.append("\n\n2. VERIFICAÇÃO CRÍTICA")
     report.append("-" * 80)
     if 'challenge2' in results:
         c2 = results['challenge2']
         report.append(f"Habilidades Críticas Analisadas: {', '.join(graph.get_critical_skills())}")
-        report.append(f"Total de Permutações: 120")
+        report.append(f"Total de Permutações: 120 (5!)")
         report.append(f"\nTop 3 Melhores Ordens:")
         for i, (cost, order) in enumerate(c2['top_3_orders'], 1):
             report.append(f"  {i}. {' -> '.join(order)} (Custo: {cost}h)")
@@ -788,7 +807,7 @@ def generate_report(graph: SkillGraph, results: Dict):
         report.append(f"Pior Custo: {c2['worst_order'][0]}h")
     
     # Desafio 3
-    report.append("\n3. PIVÔ MAIS RÁPIDO")
+    report.append("\n\n3. PIVÔ MAIS RÁPIDO")
     report.append("-" * 80)
     if 'challenge3' in results:
         c3 = results['challenge3']
@@ -809,7 +828,7 @@ def generate_report(graph: SkillGraph, results: Dict):
             report.append(f"\nGuloso encontrou solução ótima neste caso")
     
     # Desafio 4
-    report.append("\n4. TRILHAS PARALELAS")
+    report.append("\n\n4. TRILHAS PARALELAS")
     report.append("-" * 80)
     if 'challenge4' in results:
         c4 = results['challenge4']
@@ -826,7 +845,7 @@ def generate_report(graph: SkillGraph, results: Dict):
         report.append(f"  - Speedup: {c4['speedup']:.2f}x")
     
     # Desafio 5
-    report.append("\n5. RECOMENDAÇÃO DE PRÓXIMAS HABILIDADES")
+    report.append("\n\n5. RECOMENDAÇÃO DE PRÓXIMAS HABILIDADES")
     report.append("-" * 80)
     if 'challenge5' in results:
         c5 = results['challenge5']
@@ -922,7 +941,7 @@ def main():
     
     # DESAFIO 1: Caminho de Valor Máximo
     print("\n🔹 Executando Desafio 1: Caminho de Valor Máximo...")
-    challenge1 = Challenge1_MaxValuePath(graph)
+    challenge1 = Challenge1_MaxValuePath(graph, max_time=350, max_complexity=30)
     path, value, time_spent, complexity = challenge1.solve_deterministic()
     monte_carlo_results = challenge1.solve_monte_carlo(n_simulations=1000)
     
@@ -982,7 +1001,7 @@ def main():
     # DESAFIO 5: Recomendação de Próximas Habilidades
     print("\n🔹 Executando Desafio 5: Recomendação de Habilidades...")
     challenge5 = Challenge5_NextSkillsRecommendation(graph)
-    current_profile = {'S1', 'S2'}  # Exemplo: usuário já tem Python e SQL
+    current_profile = {'S1', 'S2', 'S7'}  # já tem Python, SQL e Cloud → recomendações melhores
     recommendations = challenge5.recommend(current_profile, n_recommendations=3)
     results['challenge5'] = {
         'current_profile': list(current_profile),

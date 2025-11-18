@@ -5,16 +5,23 @@
   },
   "challenge1": {
     "deterministic": {
-      "path": [],
-      "value": 0,
-      "time": 0,
-      "complexity": 0
+      "path": [
+        "S2",
+        "S7",
+        "S5",
+        "H12",
+        "S1",
+        "H10"
+      ],
+      "value": 52,
+      "time": 295,
+      "complexity": 28
     },
     "monte_carlo": {
-      "expected_value": 0,
-      "std_dev": 0.0,
-      "min_value": 0,
-      "max_value": 0,
+      "expected_value": 52.27637,
+      "std_dev": 1.3758751962498836,
+      "min_value": 48.45,
+      "max_value": 56.13,
       "n_sim": 1000
     }
   },
@@ -1280,22 +1287,18 @@
     "greedy": {
       "skills": [
         "H12",
-        "H10",
-        "S7",
-        "S2"
+        "H10"
       ],
-      "value": 17,
-      "time": 220
+      "value": 23,
+      "time": 45
     },
     "optimal": {
       "skills": [
-        "S2",
-        "S7",
         "H10",
         "H12"
       ],
-      "value": 17,
-      "time": 220
+      "value": 23,
+      "time": 45
     },
     "counterexample": null
   },
@@ -1403,17 +1406,34 @@
         10
       ]
     ],
-    "custom_time": 2.540000423323363e-05,
-    "native_time": 2.900007530115545e-06,
-    "speedup": 0.11417350577922915
+    "custom_time": 2.3600005079060793e-05,
+    "native_time": 2.8999929782003164e-06,
+    "speedup": 0.12288103195254597
   },
   "challenge5": {
     "current_profile": [
       "S2",
-      "S1"
+      "S1",
+      "S7"
     ],
     "horizon": 5,
     "recommendations": [
+      {
+        "skill_id": "H12",
+        "nome": "Introdução a IoT",
+        "score": 18.333333333333336,
+        "probabilidade_mercado": 1.0,
+        "valor": 11,
+        "tempo": 20
+      },
+      {
+        "skill_id": "H10",
+        "nome": "Segurança de Dados",
+        "score": 8.0,
+        "probabilidade_mercado": 1.0,
+        "valor": 12,
+        "tempo": 25
+      },
       {
         "skill_id": "S5",
         "nome": "Visualização de Dados (BI)",
@@ -1421,22 +1441,6 @@
         "probabilidade_mercado": 0.78,
         "valor": 6,
         "tempo": 40
-      },
-      {
-        "skill_id": "H12",
-        "nome": "Introdução a IoT",
-        "score": 0.9999999999999999,
-        "probabilidade_mercado": 0.3,
-        "valor": 3,
-        "tempo": 30
-      },
-      {
-        "skill_id": "S8",
-        "nome": "APIs e Microsserviços",
-        "score": 0.8666666666666666,
-        "probabilidade_mercado": 0.78,
-        "valor": 6,
-        "tempo": 90
       }
     ]
   }

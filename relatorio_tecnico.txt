@@ -2,29 +2,41 @@
 RELATÓRIO TÉCNICO - MOTOR DE ORIENTAÇÃO DE HABILIDADES (MOH)
 ================================================================================
 
-Data: 2025-11-18 16:15:27
+Data: 2025-11-18 17:10:07
 Total de Habilidades: 12
 
 ================================================================================
 
 1. CAMINHO DE VALOR MÁXIMO
 --------------------------------------------------------------------------------
+Restrições: Tempo ≤ 350h, Complexidade ≤ 30
+
+OBSERVAÇÃO IMPORTANTE:
+O objetivo final S6 (IA Generativa Ética) requer o caminho mínimo:
+S1 -> S3 -> S4 -> S6 (Tempo=450h, Complexidade=31)
+Como esse caminho EXCEDE as restrições, o algoritmo maximiza o valor
+considerando TODAS as habilidades disponíveis dentro dos limites.
+
 Solução Determinística:
-  - Caminho: 
-  - Valor Total: 0
-  - Tempo Total: 0h
-  - Complexidade Total: 0
+  - Caminho: S2 -> S7 -> S5 -> H12 -> S1 -> H10
+  - Valor Total: 52
+  - Tempo Total: 295h
+  - Complexidade Total: 28
 
 Simulação Monte Carlo (1000 iterações):
-  - E[Valor]: 0.00
-  - Desvio Padrão: 0.00
-  - Min: 0.00
-  - Max: 0.00
+  - E[Valor]: 52.28
+  - Desvio Padrão: 1.38
+  - Min: 48.45
+  - Max: 56.13
+
+Interpretação: A solução encontrada maximiza o valor de carreira
+dentro das restrições, priorizando habilidades de alta razão V/T.
+
 
 2. VERIFICAÇÃO CRÍTICA
 --------------------------------------------------------------------------------
 Habilidades Críticas Analisadas: S3, S5, S7, S8, S9
-Total de Permutações: 120
+Total de Permutações: 120 (5!)
 
 Top 3 Melhores Ordens:
   1. S3 -> S5 -> S7 -> S8 -> S9 (Custo: 630h)
@@ -36,21 +48,23 @@ Custo Médio Geral: 710.00h
 Melhor Custo: 630h
 Pior Custo: 790h
 
+
 3. PIVÔ MAIS RÁPIDO
 --------------------------------------------------------------------------------
 Meta de Adaptabilidade: ≥ 15
 
 Solução Gulosa (V/T):
-  - Habilidades: H12, H10, S7, S2
-  - Valor: 17
-  - Tempo: 220h
+  - Habilidades: H12, H10
+  - Valor: 23
+  - Tempo: 45h
 
 Solução Ótima (Busca Exaustiva):
-  - Habilidades: S2, S7, H10, H12
-  - Valor: 17
-  - Tempo: 220h
+  - Habilidades: H10, H12
+  - Valor: 23
+  - Tempo: 45h
 
 Guloso encontrou solução ótima neste caso
+
 
 4. TRILHAS PARALELAS
 --------------------------------------------------------------------------------
@@ -73,28 +87,29 @@ Sprint B (Complexidade 7-12):
   - S6: IA Generativa Ética (C=10)
 
 Performance:
-  - Implementação Custom: 0.0254ms
+  - Implementação Custom: 0.0236ms
   - Sort Nativo (baseline): 0.0029ms
-  - Speedup: 0.11x
+  - Speedup: 0.12x
+
 
 5. RECOMENDAÇÃO DE PRÓXIMAS HABILIDADES
 --------------------------------------------------------------------------------
-Perfil Atual: S2, S1
+Perfil Atual: S2, S1, S7
 Horizonte: 5 anos
 
 Recomendações:
-  1. S5: Visualização de Dados (BI)
+  1. H12: Introdução a IoT
+     - Score: 18.3333
+     - Prob. Mercado: 1.00
+     - Valor: 11, Tempo: 20h
+  2. H10: Segurança de Dados
+     - Score: 8.0000
+     - Prob. Mercado: 1.00
+     - Valor: 12, Tempo: 25h
+  3. S5: Visualização de Dados (BI)
      - Score: 2.3400
      - Prob. Mercado: 0.78
      - Valor: 6, Tempo: 40h
-  2. H12: Introdução a IoT
-     - Score: 1.0000
-     - Prob. Mercado: 0.30
-     - Valor: 3, Tempo: 30h
-  3. S8: APIs e Microsserviços
-     - Score: 0.8667
-     - Prob. Mercado: 0.78
-     - Valor: 6, Tempo: 90h
 
 ================================================================================
 ANÁLISE DE COMPLEXIDADE COMPUTACIONAL
