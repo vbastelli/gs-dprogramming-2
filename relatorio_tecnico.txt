@@ -1,0 +1,135 @@
+================================================================================
+RELATÓRIO TÉCNICO - MOTOR DE ORIENTAÇÃO DE HABILIDADES (MOH)
+================================================================================
+
+Data: 2025-11-18 16:15:27
+Total de Habilidades: 12
+
+================================================================================
+
+1. CAMINHO DE VALOR MÁXIMO
+--------------------------------------------------------------------------------
+Solução Determinística:
+  - Caminho: 
+  - Valor Total: 0
+  - Tempo Total: 0h
+  - Complexidade Total: 0
+
+Simulação Monte Carlo (1000 iterações):
+  - E[Valor]: 0.00
+  - Desvio Padrão: 0.00
+  - Min: 0.00
+  - Max: 0.00
+
+2. VERIFICAÇÃO CRÍTICA
+--------------------------------------------------------------------------------
+Habilidades Críticas Analisadas: S3, S5, S7, S8, S9
+Total de Permutações: 120
+
+Top 3 Melhores Ordens:
+  1. S3 -> S5 -> S7 -> S8 -> S9 (Custo: 630h)
+  2. S3 -> S5 -> S8 -> S7 -> S9 (Custo: 630h)
+  3. S3 -> S7 -> S5 -> S8 -> S9 (Custo: 630h)
+
+Custo Médio Top 3: 630.00h
+Custo Médio Geral: 710.00h
+Melhor Custo: 630h
+Pior Custo: 790h
+
+3. PIVÔ MAIS RÁPIDO
+--------------------------------------------------------------------------------
+Meta de Adaptabilidade: ≥ 15
+
+Solução Gulosa (V/T):
+  - Habilidades: H12, H10, S7, S2
+  - Valor: 17
+  - Tempo: 220h
+
+Solução Ótima (Busca Exaustiva):
+  - Habilidades: S2, S7, H10, H12
+  - Valor: 17
+  - Tempo: 220h
+
+Guloso encontrou solução ótima neste caso
+
+4. TRILHAS PARALELAS
+--------------------------------------------------------------------------------
+Algoritmo Utilizado: MERGE SORT
+
+Sprint A (Complexidade 1-6):
+  - S2: Modelagem de Dados (SQL) (C=3)
+  - H12: Introdução a IoT (C=3)
+  - S1: Programação Básica (Python) (C=4)
+  - S5: Visualização de Dados (BI) (C=5)
+  - S8: APIs e Microsserviços (C=6)
+  - H10: Segurança de Dados (C=6)
+
+Sprint B (Complexidade 7-12):
+  - S7: Estruturas em Nuvem (AWS/Azure) (C=7)
+  - S3: Algoritmos Avançados (C=8)
+  - S9: DevOps & CI/CD (C=8)
+  - H11: Análise de Big Data (C=8)
+  - S4: Fundamentos de Machine Learning (C=9)
+  - S6: IA Generativa Ética (C=10)
+
+Performance:
+  - Implementação Custom: 0.0254ms
+  - Sort Nativo (baseline): 0.0029ms
+  - Speedup: 0.11x
+
+5. RECOMENDAÇÃO DE PRÓXIMAS HABILIDADES
+--------------------------------------------------------------------------------
+Perfil Atual: S2, S1
+Horizonte: 5 anos
+
+Recomendações:
+  1. S5: Visualização de Dados (BI)
+     - Score: 2.3400
+     - Prob. Mercado: 0.78
+     - Valor: 6, Tempo: 40h
+  2. H12: Introdução a IoT
+     - Score: 1.0000
+     - Prob. Mercado: 0.30
+     - Valor: 3, Tempo: 30h
+  3. S8: APIs e Microsserviços
+     - Score: 0.8667
+     - Prob. Mercado: 0.78
+     - Valor: 6, Tempo: 90h
+
+================================================================================
+ANÁLISE DE COMPLEXIDADE COMPUTACIONAL
+================================================================================
+
+Desafio 1 - Caminho de Valor Máximo:
+  - Algoritmo: DP Multidimensional (Knapsack 2D)
+  - Complexidade: O(n × T × C) onde n=habilidades, T=tempo_max, C=complexidade_max
+  - Monte Carlo: O(k × n × T × C) onde k=número de simulações
+
+Desafio 2 - Verificação Crítica:
+  - Algoritmo: Enumeração de Permutações
+  - Complexidade: O(n!) = O(5!) = 120 permutações
+  - Validação de Grafo: O(V + E) para DFS
+
+Desafio 3 - Pivô Mais Rápido:
+  - Guloso: O(n log n) para ordenação
+  - Ótimo: O(2^n) para busca exaustiva
+  - n = número de habilidades básicas
+
+Desafio 4 - Trilhas Paralelas:
+  - Merge Sort: O(n log n) - melhor, médio e pior caso
+  - Quick Sort: Melhor/Médio O(n log n), Pior O(n²)
+
+Desafio 5 - Recomendação:
+  - Complexidade: O(n × m) onde n=habilidades, m=perfil atual
+
+================================================================================
+VALIDAÇÃO E TRATAMENTO DE ERROS
+================================================================================
+Validação do Grafo: ✓ APROVADO
+  - Sem ciclos detectados
+  - Sem nós órfãos
+  - Ordenação topológica bem-sucedida
+
+================================================================================
+FIM DO RELATÓRIO
+================================================================================
