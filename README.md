@@ -43,7 +43,6 @@ A solução combina algoritmos clássicos de otimização com análise experimen
 ```bash
 # 1. Clonar e entrar no projeto
 git clone https://github.com/vbastelli/gs-dprogramming-2
-
 cd gs-dprogramming-main
 
 # 2. Instalar dependências
