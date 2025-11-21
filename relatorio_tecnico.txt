@@ -2,7 +2,7 @@
 RELATÓRIO TÉCNICO - MOTOR DE ORIENTAÇÃO DE HABILIDADES (MOH)
 ================================================================================
 
-Data: 2025-11-18 17:10:07
+Data: 2025-11-21 11:35:42
 Total de Habilidades: 12
 
 ================================================================================
@@ -18,16 +18,16 @@ Como esse caminho EXCEDE as restrições, o algoritmo maximiza o valor
 considerando TODAS as habilidades disponíveis dentro dos limites.
 
 Solução Determinística:
-  - Caminho: S2 -> S7 -> S5 -> H12 -> S1 -> H10
+  - Caminho: H10 -> H12 -> S1 -> S5 -> S7 -> S2
   - Valor Total: 52
   - Tempo Total: 295h
   - Complexidade Total: 28
 
 Simulação Monte Carlo (1000 iterações):
-  - E[Valor]: 52.28
-  - Desvio Padrão: 1.38
+  - E[Valor]: 52.17
+  - Desvio Padrão: 1.34
   - Min: 48.45
-  - Max: 56.13
+  - Max: 55.74
 
 Interpretação: A solução encontrada maximiza o valor de carreira
 dentro das restrições, priorizando habilidades de alta razão V/T.
@@ -87,14 +87,14 @@ Sprint B (Complexidade 7-12):
   - S6: IA Generativa Ética (C=10)
 
 Performance:
-  - Implementação Custom: 0.0236ms
+  - Implementação Custom: 0.0234ms
   - Sort Nativo (baseline): 0.0029ms
   - Speedup: 0.12x
 
 
 5. RECOMENDAÇÃO DE PRÓXIMAS HABILIDADES
 --------------------------------------------------------------------------------
-Perfil Atual: S2, S1, S7
+Perfil Atual: S7, S2, S1
 Horizonte: 5 anos
 
 Recomendações:
