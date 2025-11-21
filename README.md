@@ -43,7 +43,9 @@ A solução combina algoritmos clássicos de otimização com análise experimen
 ```bash
 # 1. Clonar e entrar no projeto
 git clone https://github.com/vbastelli/gs-dprogramming-2
-cd src
+
+cd gs-dprogramming-main
+
 # 2. Instalar dependências
 pip install -r requirements.txt
 
@@ -84,7 +86,7 @@ Cobertura total de:
 ## Estrutura do Projeto
 
 ```
-moh-career-engine/
+gs-dprogramming-main/
 ├── moh_system.py          # Execução principal + todos os desafios
 ├── test_moh.py            # 33 testes unitários
 ├── visualization.py       # Geração dos 6 gráficos
