@@ -42,14 +42,14 @@ A solução combina algoritmos clássicos de otimização com análise experimen
 
 ```bash
 # 1. Clonar e entrar no projeto
-git clone https://github.com/seu-usuario/moh-career-engine.git
-cd moh-career-engine
-
+git clone https://github.com/vbastelli/gs-dprogramming-2
+cd src
 # 2. Instalar dependências
 pip install -r requirements.txt
 
 # 3. Rodar tudo (relatório + 6 gráficos + JSON)
 python moh_system.py
+python visualization.py
 ```
 
 Arquivos gerados automaticamente:
@@ -110,26 +110,3 @@ moh-career-engine/
 - Detecção de nós órfãos (pré-requisitos inexistentes)
 - Ordenação topológica garantida
 
-## Por que este projeto é nível empresa?
-
-- Código limpo, tipado e modular
-- Logging profissional (com encoding UTF-8)
-- Relatório técnico publicável
-- Visualizações prontas para dashboard
-- Testes que cobrem até casos de erro intencionais
-- 100% dos requisitos obrigatórios + extras de alto valor
-
-> “Não fiz uma Global Solution. Fiz um produto que eu mesmo usaria para planejar minha carreira nos próximos 10 anos.”  
-> — Vick B., Novembro 2025
-
-**Pronto para produção • Pronto para portfólio • Pronto para impressionar qualquer recrutador**
-
-Qualquer dúvida ou convite para apresentar ao vivo: estou à disposição!
-
----
-
-**Vick B.**  
-Engenharia de Software – FIAP 2025  
-LinkedIn • GitHub • Portfolio
-
-⭐ **O futuro do trabalho começa com as decisões que tomamos hoje.** ⭐
