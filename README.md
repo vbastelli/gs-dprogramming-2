@@ -2,7 +2,7 @@
 **Global Solution — Dynamic Programming**  
 **Disciplina:** Engenharia de Software  
 **Professor:** André Marques  
-**Grupo:**
+**Grupo:**  
 NOME: Milton Cezar Bacanieski | RM: 555206  
 NOME: Victório Maia Bastelli | RM: 554723  
 NOME: Vitor Bebiano Mulford | RM: 555026  
