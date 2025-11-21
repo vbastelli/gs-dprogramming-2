@@ -3,9 +3,9 @@
 **Disciplina:** Engenharia de Software  
 **Professor:** André Marques  
 **Grupo:**
-NOME: Milton Cezar Bacanieski | RM: 555206
-NOME: Victório Maia Bastelli | RM: 554723
-NOME: Vitor Bebiano Mulford | RM: 555026
+NOME: Milton Cezar Bacanieski | RM: 555206  
+NOME: Victório Maia Bastelli | RM: 554723  
+NOME: Vitor Bebiano Mulford | RM: 555026  
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)
 ![Matplotlib](https://img.shields.io/badge/Matplotlib-3.7-%23ffffff.svg?logo=matplotlib&logoColor=black)
